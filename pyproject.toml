@@ -1,0 +1,21 @@
+[project]
+name = "compiladores-2026-1"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "antlr4-python3-runtime==4.13.2",
+]
+
+[dependency-groups]
+dev = [
+    "taskipy>=1.14.1",
+]
+
+[tool.taskipy.tasks]
+# Compila a gramática do trabalho de URLs
+build-url = "python compilar_antlr.py analisador_urls/gramatica/UrlLexer.g4 -o analisador_urls/src/lexer_gerado"
+
+# Executa o programa principal (o taskipy repassa a URL que digitares depois)
+run-url = "python analisador_urls/src/main.py"
