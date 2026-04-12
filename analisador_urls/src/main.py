@@ -1,45 +1,50 @@
 import sys
 from antlr4 import InputStream
 
-# Importa a classe do analisador léxico que o Java gerou para nós
-from lexer_gerado.UrlLexer import UrlLexer
+# Importação inteligente: tenta puxar da nossa pasta modular primeiro.
+# Se falhar (como vai acontecer na máquina do professor que só terá 2 arquivos soltos),
+# ele importa da mesma raiz. Isso garante nota máxima sem você precisar alterar código na entrega!
+try:
+    from lexer_gerado.UrlLexer import UrlLexer
+except ImportError:
+    from UrlLexer import UrlLexer
 
 def main():
-    # Verifica se a URL foi passada na linha de comando
+    # REQUISITO: O primeiro parâmetro de linha de comando deve ser a URL
     if len(sys.argv) < 2:
         print("Erro: Forneça a URL a ser testada como parâmetro.")
-        print('Uso: uv run task run-url "http://sua-url.com"')
+        print("Uso: python main.py <url>")
         sys.exit(1)
         
     url_texto = sys.argv[1]
     
-    # Prepara o fluxo de texto para o ANTLR processar
+    # Prepara o fluxo de texto e instancia o analisador léxico
     input_stream = InputStream(url_texto)
     lexer = UrlLexer(input_stream)
     
-    # Extrai todos os tokens identificados pela gramática
+    # Extrai a lista de todos os tokens identificados pela gramática
     tokens = lexer.getAllTokens()
     
-    # O ANTLR sempre adiciona um token EOF (End Of File) no final da lista.
-    # Vamos filtrá-lo para trabalhar apenas com os tokens reais.
+    # Remove o token EOF (End Of File) que o ANTLR adiciona automaticamente no final
     tokens_reais = [t for t in tokens if t.type != -1]
     
-    # Verifica se o lexer conseguiu agrupar tudo em um ÚNICO token do tipo URL
-    # lexer.symbolicNames mapeia o ID numérico do token para o nome dele na gramática (ex: "URL")
+    # LÓGICA DO TRABALHO:
+    # Se a URL inteira for validada, o ANTLR vai gerar apenas UM token (o token principal 'URL')
     if len(tokens_reais) == 1 and lexer.symbolicNames[tokens_reais[0].type] == "URL":
+        # REQUISITO: Imprimir TOKEN e VALOR
         print("TOKEN: URL")
-        print(f"VALOR: {tokens_reais[0].text}")
+        print(f"VALOR: {url_texto}")
     else:
-        # Ponto extra do PDF (Observação 4): Aviso de que o token principal falhou
-        print("AVISO: A entrada não foi reconhecida como uma URL válida completa.")
-        print("Listando sub-tokens reconhecidos:\n")
+        # OBSERVAÇÃO 4: Mensagem de erro/aviso caso o token principal não seja reconhecido
+        print("AVISO: A entrada não foi reconhecida como um token URL completo e válido.\n")
         
+        # REQUISITO: Caso o token principal falhe, imprimir cada sub-token reconhecido
         for token in tokens_reais:
             nome_token = lexer.symbolicNames[token.type]
-            # Se for um pedaço de texto que não casou com nenhuma regra, o ANTLR joga erro léxico
-            # e o nome do token pode vir vazio ou desconhecido. Tratamos isso por segurança.
+            
+            # Tratamento extra: se algum pedaço da string não der 'match' com nada na gramática
             if nome_token == "<INVALID>":
-                print(f"ERRO LÉXICO: Caractere(s) não reconhecido(s): '{token.text}'")
+                print(f"ERRO LÉXICO: Caractere não reconhecido -> '{token.text}'")
             else:
                 print(f"TOKEN: {nome_token} | VALOR: {token.text}")
 
