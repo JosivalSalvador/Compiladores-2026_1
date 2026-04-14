@@ -14,8 +14,10 @@ dev = [
 ]
 
 [tool.taskipy.tasks]
-# Compila a gramática do trabalho de URLs
-build-url = "python compilar_antlr.py analisador_urls/gramatica/UrlLexer.g4 -o analisador_urls/src/lexer_gerado"
+# --- TUTORIAL ---
+"build:tutorial" = "cd tutorial && java -jar ../antlr-4.13.2-complete.jar -Dlanguage=Python3 Tutorial.g4"
+"start:tutorial" = "cd tutorial && python main.py"
 
-# Executa o programa principal (o taskipy repassa a URL que digitares depois)
-run-url = "python analisador_urls/src/main.py"
+# --- TRABALHO 1: URLs ---
+"build:url" = "cd analisador_urls && java -jar ../antlr-4.13.2-complete.jar -Dlanguage=Python3 UrlLexer.g4"
+"start:url" = "cd analisador_urls && python main.py"
