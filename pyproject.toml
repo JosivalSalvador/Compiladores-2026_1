@@ -21,3 +21,7 @@ dev = [
 # --- TRABALHO 1: URLs ---
 "build:url" = "cd analisador_urls && java -jar ../antlr-4.13.2-complete.jar -Dlanguage=Python3 UrlLexer.g4"
 "start:url" = "cd analisador_urls && python main.py"
+
+# --- TRABALHO 2: miniC ---
+"build:minic" = "cd compilador_minic && java -jar ../antlr-4.13.2-complete.jar -Dlanguage=Python3 MiniC.g4"
+"start:minic" = "cd compilador_minic && python main.py"
