@@ -25,3 +25,11 @@ dev = [
 # --- TRABALHO 2: miniC ---
 "build:minic" = "cd compilador_minic && java -jar ../antlr-4.13.2-complete.jar -Dlanguage=Python3 MiniC.g4"
 "start:minic" = "cd compilador_minic && python main.py"
+
+# --- TRABALHO 3: Avaliador de Expressões (LISTENER) ---
+"build:expressao-listener" = "cd avaliador_expressoes_listener && java -jar ../antlr-4.13.2-complete.jar -Dlanguage=Python3 Expressao.g4"
+"start:expressao-listener" = "cd avaliador_expressoes_listener && python main.py"
+
+# --- TRABALHO 4: Avaliador de Expressões (VISITOR) ---
+"build:expressao-visitor" = "cd avaliador_expressoes_visitor && java -jar ../antlr-4.13.2-complete.jar -Dlanguage=Python3 -visitor Expressao.g4"
+"start:expressao-visitor" = "cd avaliador_expressoes_visitor && python main.py"
