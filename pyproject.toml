@@ -33,3 +33,7 @@ dev = [
 # --- TRABALHO 4: Avaliador de Expressões (VISITOR) ---
 "build:expressao-visitor" = "cd avaliador_expressoes_visitor && java -jar ../antlr-4.13.2-complete.jar -Dlanguage=Python3 -visitor Expressao.g4"
 "start:expressao-visitor" = "cd avaliador_expressoes_visitor && python main.py"
+
+# --- TRABALHO 5: Geração de páginas HTML ---
+"build:html" = "cd gerador_html && java -jar ../antlr-4.13.2-complete.jar -Dlanguage=Python3 -visitor Html.g4"
+"start:html" = "cd gerador_html && python main.py entrada.txt"

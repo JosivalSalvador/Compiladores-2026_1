@@ -1,0 +1,23 @@
+# Área de texto livre
+TEXTO 40 5 "Descreva sua experiencia com o produto:"
+
+# Seleção única via radio
+ESCOLHAUMA "Qual o seu nivel de satisfacao?" ("Otimo", "Bom", "Regular", "Ruim")
+
+# Seleção múltipla via checkbox
+ESCOLHAVARIAS "Quais recursos voce usa?" ("Chat", "Email", "Telefone", "Video")
+
+# Menu dropdown com id, label e pares valor:rotulo
+MENU "carro" "Escolha um carro:" ("volvo":"Volvo", "saab":"Saab", "mercedes":"Mercedes", "audi":"Audi")
+
+# Botão com alerta ao clicar
+BOTAO "Clique aqui!" "Obrigado por participar da pesquisa!"
+
+# Tabela com legenda, cabeçalho e linhas de dados
+TABELA "Economia Mensal"
+    ("Mes", "Valor")
+    (
+        ("Janeiro", "R$ 100"),
+        ("Fevereiro", "R$ 50"),
+        ("Marco", "R$ 200")
+    )
