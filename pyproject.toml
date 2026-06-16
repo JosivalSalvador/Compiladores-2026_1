@@ -37,3 +37,8 @@ dev = [
 # --- TRABALHO 5: Geração de páginas HTML ---
 "build:html" = "cd gerador_html && java -jar ../antlr-4.13.2-complete.jar -Dlanguage=Python3 -visitor Html.g4"
 "start:html" = "cd gerador_html && python main.py entrada.txt"
+
+
+# --- TRABALHO 6: Verificação de Variáveis, Tipos e Funções (miniC) ---
+"build:minic-semantico" = "cd analisador_semantico_minic && java -jar ../antlr-4.13.2-complete.jar -Dlanguage=Python3 -visitor MiniC.g4"
+"start:minic-semantico" = "cd analisador_semantico_minic && python main.py"
