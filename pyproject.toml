@@ -42,3 +42,8 @@ dev = [
 # --- TRABALHO 6: Verificação de Variáveis, Tipos e Funções (miniC) ---
 "build:minic-semantico" = "cd analisador_semantico_minic && java -jar ../antlr-4.13.2-complete.jar -Dlanguage=Python3 -visitor MiniC.g4"
 "start:minic-semantico" = "cd analisador_semantico_minic && python main.py"
+
+
+# --- TRABALHO 7: Representação Intermediária (miniC) ---
+"build:minic-ir" = "cd representacao_intermediaria_minic && java -jar ../antlr-4.13.2-complete.jar -Dlanguage=Python3 -visitor MiniC.g4"
+"start:minic-ir" = "cd representacao_intermediaria_minic && python main.py"
