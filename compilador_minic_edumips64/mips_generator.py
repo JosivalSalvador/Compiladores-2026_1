@@ -70,7 +70,14 @@ STACK_SIZE = 2048                   # bytes reservados p/ pilha (mesmo tamanho d
 STACK_BOTTOM_LABEL = '_stack_bottom'
 STACK_TOP_LABEL = '_stack_top'
 
-BIN_OPS = ('>=', '<=', '==', '!=', '&&', '||', '+', '-', '*', '/', '>', '<')
+# CORREÇÃO: '%' (módulo) estava faltando nesta lista. Sem ele,
+# _split_binary_rhs() nunca reconhecia 'x % 4' como uma operação binária,
+# e a linha inteira caia no caminho de 'copy' (operando único) em
+# _parse_rhs() -- gerando um Operand cujo texto era a string inteira
+# "x % 4", que nunca existe em 'offsets', quebrando a leitura de módulo em
+# qualquer contexto (atribuição comum OU dentro de %=, já que ambos passam
+# pela mesma rota). Único ponto de correção deste bug.
+BIN_OPS = ('>=', '<=', '==', '!=', '&&', '||', '+', '-', '*', '/', '%', '>', '<')
 # ^ operadores de 2 caracteres antes dos de 1 caractere, para o rfind() nao
 #   achar soh a metade de '>=' (por exemplo) e cortar o texto no lugar errado.
 
