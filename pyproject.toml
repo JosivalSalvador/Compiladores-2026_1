@@ -47,3 +47,11 @@ dev = [
 # --- TRABALHO 7: Representação Intermediária (miniC) ---
 "build:minic-ir" = "cd representacao_intermediaria_minic && java -jar ../antlr-4.13.2-complete.jar -Dlanguage=Python3 -visitor MiniC.g4"
 "start:minic-ir" = "cd representacao_intermediaria_minic && python main.py"
+
+# --- TRABALHO 8: Emulação do Código de Três Endereços ---
+"build:emulador-tac" = "cd emulador_codigo_tres_enderecos && java -jar ../antlr-4.13.2-complete.jar -Dlanguage=Python3 -visitor TAC.g4"
+"start:emulador-tac" = "cd emulador_codigo_tres_enderecos && python main.py"
+
+# --- TRABALHO 9: Geração de Código Assembly do EduMIPS64 ---
+"build:compilador-minic-edumips" = "cd compilador_minic_edumips64 && java -jar ../antlr-4.13.2-complete.jar -Dlanguage=Python3 -visitor MiniC.g4"
+"start:compilador-minic-edumips" = "cd compilador_minic_edumips64 && python main.py"
